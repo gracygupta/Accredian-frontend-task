@@ -1,38 +1,24 @@
-import React, { useEffect, useState } from "react";
-import Hero from "./Components/HeroNew";
-// import ReferralModal from "./ReferralModal";
-import Header from "./Components/Header";
-import Banner from "./Components/Banner";
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Index from "./Pages/Refer&Earn";
+import "react-toastify/dist/ReactToastify.css";
+import Login from "./Pages/Login";
+import Register from "./Pages/Register";
+// import { CoursesProvider } from "./Context/CourseContext";
 
 function App() {
-  const [showModal, setShowModal] = useState(false);
-  const [showBanner, setShowBanner] = useState(true);
-  const handleCloseBanner = () => {
-    console.log("Clicked");
-    setShowBanner(false);
-  };
-
-  useEffect(() => {
-    console.log(showBanner);
-  }, [showBanner]);
-
-  const handleOpenModal = () => setShowModal(true);
-  const handleCloseModal = () => setShowModal(false);
-
   return (
-    <div className="">
-      {showBanner && <Banner onCloseBanner={handleCloseBanner} />}
-      <Header className="z-10" />
-      {/* <div className=""> */}
-      <Hero />
-      {/* </div> */}
-      {/* <div className="container">
-      </div> */}
-    </div>
-    // <div className="bg-gray-600 container h-full w-full ">
-    //   <Hero onOpenModal={handleOpenModal} />
-    //   {/* {showModal && <ReferralModal onCloseModal={handleCloseModal} />} */}
-    // </div>
+    // <CoursesProvider>
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<Index />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Register />} />
+        </Routes>
+      </div>
+    </Router>
+    // </CoursesProvider>
   );
 }
 

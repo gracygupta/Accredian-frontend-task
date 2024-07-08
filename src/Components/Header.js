@@ -19,8 +19,9 @@ import {
   PhoneIcon,
   PlayCircleIcon,
 } from "@heroicons/react/20/solid";
-import courses from "./programs"; // Import courses object
+import courses from "./programs";
 import { IoIosArrowDroprightCircle, IoIosArrowForward } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
 
 const callsToAction = [
   { name: "Watch demo", href: "#", icon: PlayCircleIcon },
@@ -30,6 +31,7 @@ const callsToAction = [
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState(null);
+  const navigate = useNavigate();
 
   const categories = Object.keys(courses);
 
@@ -60,7 +62,7 @@ export default function Header() {
                     <div
                       key={category}
                       onMouseEnter={() => setActiveCategory(category)}
-                      className="group relative flex items-center gap-x-6 rounded-lg px-4 py-1 text-sm leading-6 hover:bg-gray-50 cursor-pointer"
+                      className="group relative flex items-center gap-x-6 rounded-lg px-4 py-1 text-sm leading-6 hover:bg-gray-50 cursor-pointer border-black"
                     >
                       <div className="flex-auto">
                         <a
@@ -116,19 +118,19 @@ export default function Header() {
         </div>
         <PopoverGroup className="hidden lg:flex lg:gap-x-12">
           <a
-            href="#"
+            href="#refer-n-earn"
             className="relative text-sm font-semibold leading-6 text-gray-900 hover:text-gray-700 transition-colors duration-300 ease-in-out after:content-[''] after:absolute after:left-2 after:right-2 after:bottom-0 after:h-0.5 after:bg-transparent after:transition-transform after:duration-500 after:ease-in-out hover:after:bg-gray-400 hover:after:scale-x-100"
           >
             Refer & Earn
           </a>
           <a
-            href="#"
+            href="#resources"
             className="relative text-sm font-semibold leading-6 text-gray-900 hover:text-gray-700 transition-colors duration-300 ease-in-out after:content-[''] after:absolute after:left-2 after:right-2 after:bottom-0 after:h-0.5 after:bg-transparent after:transition-transform after:duration-500 after:ease-in-out hover:after:bg-gray-400 hover:after:scale-x-100"
           >
             Resources
           </a>
           <a
-            href="#"
+            href="#about-us"
             className="relative text-sm font-semibold leading-6 text-gray-900 hover:text-gray-700 transition-colors duration-300 ease-in-out after:content-[''] after:absolute after:left-2 after:right-2 after:bottom-0 after:h-0.5 after:bg-transparent after:transition-transform after:duration-500 after:ease-in-out hover:after:bg-gray-400 hover:after:scale-x-100"
           >
             About Us
@@ -136,7 +138,10 @@ export default function Header() {
         </PopoverGroup>
 
         <div className="hidden lg:flex lg:flex-1 lg:justify-end gap-4">
-          <button className="text-sm font-semibold leading-6 bg-gray-300 hover:bg-gray-400 py-2 px-4 rounded-md shadow-sm">
+          <button
+            className="text-sm font-semibold leading-6 bg-gray-300 hover:bg-gray-400 py-2 px-4 rounded-md shadow-sm"
+            onClick={() => navigate("/login")}
+          >
             Log in
           </button>
           <button className="text-sm font-semibold leading-6 text-white bg-blue-500 hover:bg-blue-600 py-2 px-4 rounded-md shadow-sm">
@@ -190,19 +195,19 @@ export default function Header() {
                   </DisclosurePanel>
                 </Disclosure>
                 <a
-                  href="#"
+                  href="#refer-n-earn"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   Refer & Earn
                 </a>
                 <a
-                  href="#"
+                  href="#resources"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   Resources
                 </a>
                 <a
-                  href="#"
+                  href="#about-us"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   About Us
@@ -210,7 +215,8 @@ export default function Header() {
               </div>
               <div className="py-6">
                 <a
-                  href="#"
+                  href=""
+                  onClick={() => navigate("/login")}
                   className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   Log in
