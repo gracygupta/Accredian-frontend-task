@@ -1,1 +1,1 @@
-exports.BACKEND_API = "http://localhost:5000";
+exports.BACKEND_API = "https://accredian-backend-task-8pi1.onrender.com";
