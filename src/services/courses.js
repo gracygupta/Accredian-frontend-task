@@ -1,41 +1,54 @@
-// import axios from "axios";
-// import { useState, useEffect } from "react";
+import axios from "axios";
+import { useState, useEffect } from "react";
 
-// const useFetchCourses = () => {
-//   const [courses, setCourses] = useState({});
+const useFetchCourses = () => {
+  const [courses, setCourses] = useState({});
 
-//   useEffect(() => {
-//     const fetchCourses = async () => {
-//       try {
-//         const response = await axios.get("http://localhost:5000/api/courses");
-//         const coursesData = response.data;
+  useEffect(() => {
+    const fetchCourses = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/api/courses");
+        const coursesData = response.data;
 
-//         const formattedCourses = coursesData.reduce((acc, course) => {
-//           const { category, name, referrerBonus, refereeBonus } = course;
+        const formattedCourses = coursesData.reduce((acc, course) => {
+          const {
+            id,
+            category,
+            name,
+            price,
+            referrerBonus,
+            refereeBonus,
+            enrolledRefereeBonus,
+            enrolledReferrerBonus,
+          } = course;
 
-//           if (!acc[category]) {
-//             acc[category] = [];
-//           }
+          if (!acc[category]) {
+            acc[category] = [];
+          }
 
-//           acc[category].push({
-//             name,
-//             referrerBonus: `₹ ${referrerBonus.toLocaleString()}`,
-//             refereeBonus: `₹ ${refereeBonus.toLocaleString()}`,
-//           });
+          acc[category].push({
+            id,
+            name,
+            referrerBonus: `₹ ${referrerBonus.toLocaleString()}`,
+            refereeBonus: `₹ ${refereeBonus.toLocaleString()}`,
+            enrolledRefereeBonus: `₹ ${enrolledRefereeBonus.toLocaleString()}`,
+            enrolledReferrerBonus: `₹ ${enrolledReferrerBonus.toLocaleString()} `,
+            coursePrice: `₹ ${price.toLocaleString()}`,
+          });
 
-//           return acc;
-//         }, {});
+          return acc;
+        }, {});
 
-//         setCourses(formattedCourses);
-//       } catch (error) {
-//         console.error("Error fetching courses:", error);
-//       }
-//     };
+        setCourses(formattedCourses);
+      } catch (error) {
+        console.error("Error fetching courses:", error);
+      }
+    };
 
-//     fetchCourses();
-//   }, []);
+    fetchCourses();
+  }, []);
 
-//   return courses;
-// };
+  return courses;
+};
 
-// export default useFetchCourses;
+export default useFetchCourses;

@@ -2,21 +2,20 @@ import { useEffect, useState } from "react";
 import hero from "../img/hero.png";
 import ChatComponent from "./Chat";
 import Footer from "./Footer";
-import courses from "./programs";
+// import courses from "./programs";
 import ReferralModal from "./ReferralModal";
 import { useNavigate } from "react-router-dom";
 import FAQsSection from "./FAQ";
 import Benefits from "./Benefits";
 import HowToRefer from "./Steps";
 
-const categories = Object.keys(courses);
-
-export default function Hero() {
-  const [selectedCategory, setSelectedCategory] = useState(categories[0]);
+export default function Hero({ courses }) {
   const [enrolled, setEnrolled] = useState(false);
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
+  const [categories, setCategories] = useState([]);
 
+  // const categories = Object.keys(courses);
   const checkLogin = async () => {
     const token = await localStorage.getItem("token");
 
@@ -35,9 +34,12 @@ export default function Hero() {
   };
   useEffect(() => {
     console.log(showModal);
-  }, [showModal]);
+    console.log(categories);
+  }, [showModal, categories]);
 
-  const categoryCourses = courses[selectedCategory] || [];
+  useEffect(() => {
+    setCategories(Object.keys(courses));
+  }, [courses]);
 
   return (
     <>
@@ -107,20 +109,23 @@ export default function Hero() {
       </div>
 
       {/* Render Referral Modal */}
-      <ReferralModal isOpen={showModal} onClose={closeModal} />
+      <ReferralModal
+        courses={courses}
+        isOpen={showModal}
+        onClose={closeModal}
+      />
 
       {/* Steps Section */}
       <HowToRefer openModal={openModal} />
 
       {/* Benefits Section */}
       <Benefits
+        courses={courses}
         enrolled={enrolled}
         setEnrolled={setEnrolled}
         categories={categories}
-        selectedCategory={selectedCategory}
-        setSelectedCategory={setSelectedCategory}
         openModal={openModal}
-        categoryCourses={categoryCourses}
+        // categoryCourses={categoryCourses}
       />
 
       {/* FAQs Section */}
@@ -130,7 +135,7 @@ export default function Hero() {
       <ChatComponent />
 
       {/* Footer Component */}
-      <Footer />
+      <Footer courses={courses} />
     </>
   );
 }

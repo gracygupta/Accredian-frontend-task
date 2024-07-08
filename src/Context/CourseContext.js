@@ -1,11 +1,11 @@
 // src/contexts/CoursesContext.js
 import React, { createContext, useContext, useState, useEffect } from "react";
-// import useFetchCourses from "../services/courses";
+import useFetchCourses from "../services/courses";
 
 const CoursesContext = createContext();
 
 export const CoursesProvider = ({ children }) => {
-  const courses = [];
+  const courses = useFetchCourses();
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {

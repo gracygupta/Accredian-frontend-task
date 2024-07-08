@@ -1,31 +1,22 @@
-import { useEffect, useState } from "react";
-import courses from "./programs";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import api from "../services/api.service";
 import { ToastContainer, toast, Bounce } from "react-toastify";
 import axios from "axios";
 import { BACKEND_API } from "../services/constants";
 
-const ReferralModal = ({ isOpen, onClose }) => {
+const ReferralModal = ({ courses, isOpen, onClose }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phoneNumber: "",
-    referredCourse: "",
+    referredCourseId: "",
   });
   const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState("");
 
-  //   const handleSubmit = (event) => {
-  //     event.preventDefault();
-  //     // Handle form submission logic here, e.g., call API to submit referral
-  //     console.log(formData);
-  //     // Close modal after submission
-  //     onClose();
-  //   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
@@ -46,7 +37,7 @@ const ReferralModal = ({ isOpen, onClose }) => {
         });
       } else {
         toast("Failed to create referral", {
-          type: "success",
+          type: "error",
           transition: Bounce,
         });
       }
@@ -54,20 +45,24 @@ const ReferralModal = ({ isOpen, onClose }) => {
         name: "",
         email: "",
         phoneNumber: "",
-        referredCourse: "",
+        referredCourseId: "",
       });
       onClose();
     } catch (error) {
-      console.log(error);
+      console.error("Error creating referral:", error);
+      if (error.response?.data.message === "Authentication failed") {
+        return navigate("/login");
+      }
+
       toast(error.response.data.message, {
-        type: "success",
+        type: "error",
         transition: Bounce,
       });
       setFormData({
         name: "",
         email: "",
         phoneNumber: "",
-        referredCourse: "",
+        referredCourseId: "",
       });
       onClose();
     }
@@ -82,10 +77,11 @@ const ReferralModal = ({ isOpen, onClose }) => {
   };
 
   const handleCategoryChange = (event) => {
-    setSelectedCategory(event.target.value);
+    const category = event.target.value;
+    setSelectedCategory(category);
     setFormData((prevData) => ({
       ...prevData,
-      referredCourse: "",
+      referredCourseId: "",
     }));
   };
 
@@ -195,15 +191,15 @@ const ReferralModal = ({ isOpen, onClose }) => {
           </div>
           <div className="mb-4">
             <label
-              htmlFor="referredCourse"
+              htmlFor="referredCourseId"
               className="block text-sm font-medium text-gray-700"
             >
               Referred Course
             </label>
             <select
-              id="referredCourse"
-              name="referredCourse"
-              value={formData.referredCourse}
+              id="referredCourseId"
+              name="referredCourseId"
+              value={formData.referredCourseId}
               onChange={handleChange}
               className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-base"
               required
@@ -211,7 +207,7 @@ const ReferralModal = ({ isOpen, onClose }) => {
               <option value="">Select a course</option>
               {selectedCategory &&
                 courses[selectedCategory].map((course) => (
-                  <option key={course.name} value={course.name}>
+                  <option key={course.id} value={course.id}>
                     {course.name}
                   </option>
                 ))}

@@ -19,7 +19,7 @@ import {
   PhoneIcon,
   PlayCircleIcon,
 } from "@heroicons/react/20/solid";
-import courses from "./programs";
+// import courses from "./programs";
 import { IoIosArrowDroprightCircle, IoIosArrowForward } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 
@@ -28,7 +28,7 @@ const callsToAction = [
   { name: "Contact sales", href: "#", icon: PhoneIcon },
 ];
 
-export default function Header() {
+export default function Header({ courses }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState(null);
   const navigate = useNavigate();
@@ -118,19 +118,19 @@ export default function Header() {
         </div>
         <PopoverGroup className="hidden lg:flex lg:gap-x-12">
           <a
-            href="#refer-n-earn"
+            href="https://accredian.com/"
             className="relative text-sm font-semibold leading-6 text-gray-900 hover:text-gray-700 transition-colors duration-300 ease-in-out after:content-[''] after:absolute after:left-2 after:right-2 after:bottom-0 after:h-0.5 after:bg-transparent after:transition-transform after:duration-500 after:ease-in-out hover:after:bg-gray-400 hover:after:scale-x-100"
           >
             Refer & Earn
           </a>
           <a
-            href="#resources"
+            href="https://accredian.com/"
             className="relative text-sm font-semibold leading-6 text-gray-900 hover:text-gray-700 transition-colors duration-300 ease-in-out after:content-[''] after:absolute after:left-2 after:right-2 after:bottom-0 after:h-0.5 after:bg-transparent after:transition-transform after:duration-500 after:ease-in-out hover:after:bg-gray-400 hover:after:scale-x-100"
           >
             Resources
           </a>
           <a
-            href="#about-us"
+            href="https://accredian.com/"
             className="relative text-sm font-semibold leading-6 text-gray-900 hover:text-gray-700 transition-colors duration-300 ease-in-out after:content-[''] after:absolute after:left-2 after:right-2 after:bottom-0 after:h-0.5 after:bg-transparent after:transition-transform after:duration-500 after:ease-in-out hover:after:bg-gray-400 hover:after:scale-x-100"
           >
             About Us
@@ -144,9 +144,11 @@ export default function Header() {
           >
             Log in
           </button>
-          <button className="text-sm font-semibold leading-6 text-white bg-blue-500 hover:bg-blue-600 py-2 px-4 rounded-md shadow-sm">
-            Try for free <span aria-hidden="true">&rarr;</span>
-          </button>
+          <a href="https://trial.accredian.com/">
+            <button className="text-sm font-semibold leading-6 text-white bg-blue-500 hover:bg-blue-600 py-2 px-4 rounded-md shadow-sm">
+              Try for free <span aria-hidden="true">&rarr;</span>
+            </button>
+          </a>
         </div>
       </nav>
       <Dialog
@@ -195,19 +197,19 @@ export default function Header() {
                   </DisclosurePanel>
                 </Disclosure>
                 <a
-                  href="#refer-n-earn"
+                  href="https://accredian.com/"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   Refer & Earn
                 </a>
                 <a
-                  href="#resources"
+                  href="https://accredian.com/"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   Resources
                 </a>
                 <a
-                  href="#about-us"
+                  href="https://accredian.com/"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   About Us

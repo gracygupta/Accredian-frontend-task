@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { IoIosArrowDropdownCircle, IoLogoYoutube } from "react-icons/io";
 import {
   FaGraduationCap,
   FaFacebookSquare,
@@ -9,10 +8,11 @@ import {
   FaChevronUp,
 } from "react-icons/fa";
 import { GrInstagram } from "react-icons/gr";
+import { IoIosArrowDropdownCircle, IoLogoYoutube } from "react-icons/io";
 import logo from "../img/logo2.png";
-import courses from "./programs";
+// import courses from "./programs";
 
-const Footer = () => {
+const Footer = ({ courses }) => {
   const categories = Object.keys(courses);
   const [showPrograms, setShowPrograms] = useState({});
   const [showAccredian, setShowAccredian] = useState(true);
@@ -30,7 +30,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Logo */}
         <img src={logo} alt="Logo" className="w-55 ml-10" />
-        <div className="grid grid-cols-1 lg:grid-cols-3">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           {/* Programs */}
           <div className="py-10 pl-10 pr-5">
             <h3 className="text-lg font-bold mb-4">Programs</h3>
@@ -56,10 +56,6 @@ const Footer = () => {
                             <FaGraduationCap className="text-blue-500 mr-2" />
                             <span>{course.name}</span>
                           </div>
-                          {/* <div className="ml-6 text-sm">
-                            <p>Referrer Bonus: {course.referrerBonus}</p>
-                            <p>Referee Bonus: {course.refereeBonus}</p>
-                          </div> */}
                         </li>
                       ))}
                     </ul>
@@ -75,47 +71,62 @@ const Footer = () => {
           {/* Contact Us and Social Media */}
           <div className="flex flex-col items-start py-10 pl-10 pr-5">
             <h3 className="text-lg font-bold mb-4">Contact Us</h3>
-            <ul className="mb-4">
+            <ul className="mb-8">
               <li>
                 Email us (For Data Science Queries): admissions@accredian.com
               </li>
               <li>
-                Email us (For Product Management Queries):pm@accredian.com
+                Email us (For Product Management Queries): pm@accredian.com
               </li>
               <li>
-                Data Science Admission Helpline:+91 9079653292 (9 AM - 7 PM)
+                Data Science Admission Helpline: +91 9079653292 (9 AM - 7 PM)
               </li>
-              <li>Product Management Admission Helpline:+91 9625811095</li>
+              <li>Product Management Admission Helpline: +91 9625811095</li>
               <li>Enrolled Student Helpline: +91 7969322507</li>
               <li>
                 Office Address: 4th Floor, 250, Phase IV, Udyog Vihar, Sector
                 18, Gurugram, Haryana 122015
               </li>
             </ul>
-            <h3 className="text-lg font-bold mb-4 pt-8">Social Media</h3>
+            <h3 className="text-lg font-bold mb-4">Social Media</h3>
             <ul className="flex space-x-6">
               <li>
-                <a href="#" className="text-white hover:text-blue-500">
+                <a
+                  href="https://www.facebook.com/accredianlearn/"
+                  className="text-white hover:text-blue-500"
+                >
                   <FaFacebookSquare size={28} />
                 </a>
               </li>
               <li>
-                <a href="#" className="text-white hover:text-blue-500">
+                <a
+                  href="https://x.com/accredianedu"
+                  className="text-white hover:text-blue-500"
+                >
                   <FaTwitter size={28} />
                 </a>
               </li>
               <li>
-                <a href="#" className="text-white hover:text-blue-500">
+                <a
+                  href="https://www.linkedin.com/school/accredianedu/"
+                  className="text-white hover:text-blue-500"
+                >
                   <FaLinkedin size={28} />
                 </a>
               </li>
               <li>
-                <a href="#" className="text-white hover:text-blue-500">
+                <a
+                  href="https://www.instagram.com/accredian_edu/"
+                  className="text-white hover:text-blue-500"
+                >
                   <GrInstagram size={28} />
                 </a>
               </li>
               <li>
-                <a href="#" className="text-white hover:text-blue-500">
+                <a
+                  href="https://www.youtube.com/@Accredian"
+                  className="text-white hover:text-blue-500"
+                >
                   <IoLogoYoutube size={28} />
                 </a>
               </li>
@@ -126,49 +137,81 @@ const Footer = () => {
           <div className="flex flex-col items-start py-10 pl-10">
             <div className="w-full">
               <h3 className="text-lg font-bold mb-4">Quick Links</h3>
-              <ul className="mb-4">
+              <ul>
                 <li>
-                  <a href="#" className="text-white hover:text-blue-500">
+                  <a
+                    href="https://accredian.com/About"
+                    className="text-white hover:text-blue-500"
+                  >
                     About
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="text-white hover:text-blue-500">
+                  <a
+                    href="https://accredian.com/Career"
+                    className="text-white hover:text-blue-500"
+                  >
                     Careers
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="text-white hover:text-blue-500">
+                  <a
+                    href="https://blog.accredian.com"
+                    className="text-white hover:text-blue-500"
+                  >
                     Blog
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="text-white hover:text-blue-500">
+                  <a href="/" className="text-white hover:text-blue-500">
                     Refer & Earn
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="text-white hover:text-blue-500">
+                  <a
+                    href="https://accredian.com/policies/accredian-policy"
+                    className="text-white hover:text-blue-500"
+                  >
                     Admission Policy
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="text-white hover:text-blue-500">
+                  <a
+                    href="https://accredian.com/terms/referral"
+                    className="text-white hover:text-blue-500"
+                  >
                     Referral Policy
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="text-white hover:text-blue-500">
+                  <a
+                    href="https://accredian.com/terms/privacy"
+                    className="text-white hover:text-blue-500"
+                  >
                     Privacy Policy
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="text-white hover:text-blue-500">
+                  <a
+                    href="https://accredian.com/terms/refund"
+                    className="text-white hover:text-blue-500"
+                  >
+                    Refund Policy
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://accredian.com/terms"
+                    className="text-white hover:text-blue-500"
+                  >
                     Terms of Service
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="text-white hover:text-blue-500">
+                  <a
+                    href="https://accredian.com/Faq"
+                    className="text-white hover:text-blue-500"
+                  >
                     Master FAQs
                   </a>
                 </li>

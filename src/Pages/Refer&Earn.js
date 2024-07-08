@@ -1,38 +1,27 @@
 import React, { useEffect, useState } from "react";
 import Hero from "../Components/Hero";
-// import ReferralModal from "./ReferralModal";
 import Header from "../Components/Header";
 import Banner from "../Components/Banner";
+import { useCourses } from "../Context/CourseContext";
 
 function Index() {
-  const [showModal, setShowModal] = useState(false);
   const [showBanner, setShowBanner] = useState(true);
   const handleCloseBanner = () => {
-    console.log("Clicked");
     setShowBanner(false);
   };
+  const { courses, categories } = useCourses();
 
   useEffect(() => {
-    console.log(showBanner);
-  }, [showBanner]);
-
-  const handleOpenModal = () => setShowModal(true);
-  const handleCloseModal = () => setShowModal(false);
+    if (courses) console.log(courses);
+    console.log(categories);
+  }, [courses]);
 
   return (
     <div className="">
       {showBanner && <Banner onCloseBanner={handleCloseBanner} />}
-      <Header className="z-10" />
-      {/* <div className=""> */}
-      <Hero />
-      {/* </div> */}
-      {/* <div className="container">
-      </div> */}
+      <Header className="z-10" courses={courses} />
+      <Hero courses={courses} categories={categories} />
     </div>
-    // <div className="bg-gray-600 container h-full w-full ">
-    //   <Hero onOpenModal={handleOpenModal} />
-    //   {/* {showModal && <ReferralModal onCloseModal={handleCloseModal} />} */}
-    // </div>
   );
 }
 

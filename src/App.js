@@ -4,21 +4,21 @@ import Index from "./Pages/Refer&Earn";
 import "react-toastify/dist/ReactToastify.css";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
-// import { CoursesProvider } from "./Context/CourseContext";
+import { CoursesProvider } from "./Context/CourseContext";
 
 function App() {
   return (
-    // <CoursesProvider>
-    <Router>
-      <div className="App">
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Register />} />
-        </Routes>
-      </div>
-    </Router>
-    // </CoursesProvider>
+    <CoursesProvider>
+      <Router>
+        <div className="App">
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Register />} />
+          </Routes>
+        </div>
+      </Router>
+    </CoursesProvider>
   );
 }
 

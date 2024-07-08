@@ -1,19 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   IoIosArrowDroprightCircle,
   IoIosArrowDropdownCircle,
 } from "react-icons/io";
-import { FaGraduationCap, FaQuestion } from "react-icons/fa";
+import { FaGraduationCap } from "react-icons/fa";
 
 const Benefits = ({
+  courses,
   enrolled,
   setEnrolled,
   categories,
-  selectedCategory,
-  setSelectedCategory,
   openModal,
-  categoryCourses,
 }) => {
+  const [selectedCategory, setSelectedCategory] = useState(categories[0]);
+  const [categoryCourses, setCategoryCourses] = useState(
+    courses[categories[0]] || []
+  );
+
+  useEffect(() => {
+    setCategoryCourses(courses[selectedCategory] || []);
+  }, [selectedCategory, courses, categories]);
+
+  useEffect(() => {
+    setSelectedCategory(categories[0]);
+  }, [categories]);
   return (
     <div className="bg-gray-100 py-8" id="resources">
       <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
@@ -35,8 +45,8 @@ const Benefits = ({
         </div>
         <div className="flex h-full">
           {/* Vertical Menu */}
-          <div className="w-1/4 bg-white shadow-lg rounded-lg">
-            <ul>
+          <div className="w-1/4">
+            <ul className="bg-white shadow-lg rounded-lg">
               {categories.map((category, index) => (
                 <li
                   key={index}
@@ -45,7 +55,7 @@ const Benefits = ({
                       ? "bg-blue-500 text-white"
                       : "text-gray-700"
                   } ${index === 0 ? "rounded-t-lg" : ""}
-            ${index === categories.length - 1 ? "rounded-b-lg" : ""}`}
+                    ${index === categories.length - 1 ? "rounded-b-lg" : ""}`}
                   onClick={() => setSelectedCategory(category)}
                 >
                   <span className="flex-grow">{category}</span>
@@ -84,7 +94,7 @@ const Benefits = ({
                 </tr>
               </thead>
               <tbody>
-                {/* Render 9 fixed rows */}
+                {/* Render 10 rows */}
                 {[...Array(10)].map((_, index) => {
                   const course = categoryCourses[index];
                   return (
