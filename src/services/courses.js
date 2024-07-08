@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { BACKEND_API } from "./constants";
 
 const useFetchCourses = () => {
   const [courses, setCourses] = useState({});
@@ -7,7 +8,7 @@ const useFetchCourses = () => {
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/courses");
+        const response = await axios.get(`${BACKEND_API}/api/courses`);
         const coursesData = response.data;
 
         const formattedCourses = coursesData.reduce((acc, course) => {
